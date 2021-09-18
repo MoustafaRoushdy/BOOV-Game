@@ -1,20 +1,14 @@
 #pragma once
 
 #include<string>
+#include "competitor.h"
 
-class BOOV {
+class BOOV : public competitor{
 	
 public:
 	BOOV(const std::string& NAME, int HEALTH, int SHIELD);
-	std::string GetName() const;
-	int GetHealth() const;
-	int GetShield() const;
-
-	bool IsDefeated() const;
-	void GetAttacked();
+	virtual void GetAttacked() override;
 
 private:
-	std::string name;
-	int health;
-	int shield;
+	
 };

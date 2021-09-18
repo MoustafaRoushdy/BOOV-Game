@@ -1,33 +1,13 @@
 #include "BOOV.h"
 
 BOOV::BOOV(const std::string& NAME, int HEALTH, int SHIELD)
-	: name(NAME),
-	health(HEALTH),
-	shield(SHIELD)
+	: competitor(NAME,HEALTH,SHIELD)
 {
 	//nothing here
 
 }
 
-int::BOOV:: GetHealth() const
-{
-	return health;
-}
 
-std::string BOOV::GetName() const
-{
-	return name;
-}
-
-int::BOOV::GetShield() const
-{
-	return shield;
-}
-
-bool::BOOV::IsDefeated() const
-{
-	return(health <= 0);
-}
 void::BOOV::GetAttacked()
 {
 	int roll = rand() % 100;

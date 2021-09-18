@@ -4,6 +4,7 @@
 #include <iostream>
 #include "BOOV.h"
 #include <ctime>
+#include"gorg.h"
 
 
 
@@ -13,30 +14,37 @@ int main()
 {
     srand(static_cast<unsigned>(time(0)));
     //getting the boov's health
-    std::cout << "Enter the BOOV's health value";
-    int health;
-    std::cin >> health;
+    
+    int health = 0 ;
+   
     //getting the boov's shield
-    cout << "Enter the BOOV's shield value";
-    int shield;
-    std::cin >> shield;
+   
+    int shield = 0 ;
     //run many simulations 
     const int num_of_simulations = 10000;
     //counting the number of round_survived
-    int round_survived = 0;
+    int BOOV_wins = 0;
+    int gorg_wins = 0; 
+
 
     for (int i = 0; i < num_of_simulations; i++)
     {
-        BOOV oh("oh", health, shield);
-            while (!oh.IsDefeated())
+        competitor * oh = new BOOV("oh", 30  , 31);
+        competitor *   goorg = new gorg; 
+            while (!oh->IsDefeated() && !goorg->IsDefeated())
             {
-                round_survived++;
-                oh.GetAttacked();
+                goorg->GetAttacked(); 
+                if (!goorg->IsDefeated()) oh->GetAttacked();
+                
             }
+            if (goorg->IsDefeated()) BOOV_wins++;
+            else gorg_wins++;
     }
-    std::cout << "average number of rounds until defeated ";
-    double average = round_survived / static_cast<double>(num_of_simulations);
-    cout << average << endl;
+    double BOOVpct = BOOV_wins / static_cast<double>(num_of_simulations)*100;
+    double gorgpct = gorg_wins / static_cast<double>(num_of_simulations) * 100;
+
+    cout <<"boov percentage = " << BOOVpct<< endl;
+    cout << "gorg percentage = " << gorgpct << endl; 
 
     system("PAUSE");
 }
